@@ -1,6 +1,8 @@
 import {cquerySelector} from 'html-vision'
 import {DEV} from './constants.js'
 import {getThemeStore, openSettingsDialog} from './imports.js'
+import toast from 'toastit'
+import {app} from './app-shell/app-shell.js'
 
 const inputNames = ['INPUT', 'TEXTAREA', 'MD-FILLED-TEXT-FIELD']
 export function eventIsFromInput(event: Event) {
@@ -11,9 +13,7 @@ export function eventIsFromInput(event: Event) {
 	})
 }
 
-window.addEventListener('keypress', async (event: KeyboardEvent) => {
-	// console.log(event)
-
+window.addEventListener('keydown', async (event: KeyboardEvent) => {
 	if (event.altKey || event.ctrlKey) {
 		return
 	}
@@ -33,8 +33,39 @@ window.addEventListener('keypress', async (event: KeyboardEvent) => {
 			// ;(await getThemeStore()).toggleMode()
 			break
 		case 's':
-			openSettingsDialog()
+			// openSettingsDialog()
 			break
+	}
+})
+
+document.addEventListener('keydown', (event: KeyboardEvent) => {
+	const key = event.key
+
+	const isLetter = key.length === 1 && /[a-zA-Z]/.test(key)
+
+	const editingKeys = [
+		'Backspace',
+		'Delete',
+		'ArrowLeft',
+		'ArrowRight',
+		'ArrowUp',
+		'ArrowDown',
+		'Enter',
+		'Tab',
+	]
+
+	const isEditingKey = editingKeys.indexOf(key) !== -1
+
+	if (isLetter || isEditingKey) {
+		app.textfield?.focus()
+	}
+})
+
+window.addEventListener('voice-recorder-submit', async (event: Event) => {
+	const {input, mode} = (event as CustomEvent).detail
+	if (input && mode === 0) {
+		const {store} = await import('./store.js')
+		store.search = input
 	}
 })
 

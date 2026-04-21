@@ -31,6 +31,17 @@ class GamepadController extends ReactiveController {
 		})
 		minigp.onConnect((gamepad) => {
 			// document.body.requestPointerLock()
+			let voiceRecorderOpen = false
+			window.addEventListener('voice-recorder-open', () => {
+				voiceRecorderOpen = true
+				gamepad.enabled = false
+			})
+			window.addEventListener('voice-recorder-close', () => {
+				voiceRecorderOpen = false
+				setTimeout(() => {
+					gamepad.enabled = true
+				}, 100)
+			})
 			this.gamepad = gamepad
 			const map = gamepad.mapping
 			const {
@@ -101,6 +112,13 @@ class GamepadController extends ReactiveController {
 						if (date) {
 							googleImagesOpen(date.title)
 						}
+						break
+				}
+			})
+			gamepad.for(a).before(({mode}) => {
+				switch (mode) {
+					case Mode.PRIMARY:
+						store.search = ''
 						break
 				}
 			})
