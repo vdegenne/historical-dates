@@ -71,6 +71,8 @@ Roi de Judee (etat client de Rome a ce moment)
 
 -4 mort herode Ier
 
+0 Christ
+
 6 judee officiellement province romaine
 
 70 Revolte juive
@@ -232,7 +234,7 @@ Ne pas confondre avec Bonaparte 1er (son oncle)
 Promesse des britannique aux arabes
 en echange: arabes se soulevent contre les ottomans
 
-1917. Declaration Balfour
+1917 Declaration Balfour
 Lettre d'intention, royaume-uni favorable a la creation en Palestine d'un foyer national pour le peuple juif.
 condition: ne pas nuire aux droits des populations non juives existantes(!)
 
