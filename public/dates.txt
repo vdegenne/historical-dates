@@ -1,5 +1,3 @@
-...
-
 -10000 fin paleolithique
 
 -10000 debut neolithique
@@ -164,12 +162,16 @@ premiere croisade
 1300 fin moyen-age central
 
 1300 debut bas moyen-age
+moyen-age tardif
 
 ~1300 fin des croisades
 
 ~1300 Debut empire ottoman (en anatolie)
 Osman 1er
 Etat multi-ethnique musulman
+
+~1400 Debut Renaissance
+L'Humanisme en decoule (proche du peripateticien)
 
 1492 Juifs expulses d'Espagne
 
@@ -180,6 +182,8 @@ Moscou devient heritiere religieuse = theorie de la "3eme Rome"
 
 1473 Nicolas Copernic
 La terre tourne autours du soleil et non l'inverse
+
+1492 Fin Royaume de Grenade
 
 1500 fin bas moyen-age (temps modernes)
 
@@ -194,7 +198,14 @@ Les Mamelouks en Palestine
 
 ~1550 Hasbourg Flandre
 
+1550 Art Jesuite
+Confondu avec le baroque
+Église du Gesù
+Certaines eglises post-baroque peuvent s'inspirer de l'Art Jesuite sans en etre.
+
 1596 Descartes
+
+~1600 Fin Renaissance
 
 ~1800 fin de l’Ordre de Saint-Jean de Jérusalem
 Ordre des Hospitaliers
@@ -202,6 +213,12 @@ Ordre des Hospitaliers
 1801 Concordat
 Entre Napoleon Ier et le Pape Pie VII
 Retabli la paix entre l'Etat francais et l'Eglise apres la Revolution.
+
+1848 Louis-Napoleon Bonaparte (Napoleon III)
+Premier president de la France
+Ne pas confondre avec Bonaparte 1er (son oncle)
+
+1848 Printemps des peuples
 
 1853 Guerre de Crimee
 

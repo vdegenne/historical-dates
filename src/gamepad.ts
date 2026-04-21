@@ -1,6 +1,20 @@
 import {ReactiveController} from '@snar/lit'
 import {MGamepad, MiniGamepad, Mode} from '@vdegenne/mini-gamepad'
+import {Repeater} from '@vdegenne/mini-gamepad/repeater.js'
 import {state} from 'lit/decorators.js'
+import toast from 'toastit'
+import {store} from './store.js'
+
+const downRepeater = new Repeater({
+	action() {
+		store.nextDateIndex()
+	},
+})
+const upRepeater = new Repeater({
+	action() {
+		store.previousDateIndex()
+	},
+})
 
 class GamepadController extends ReactiveController {
 	@state() gamepad: MGamepad | undefined
@@ -44,11 +58,37 @@ class GamepadController extends ReactiveController {
 				MIDDLE_TOP: guide,
 			} = map
 
-			gamepad.for(b).before(({mode}) => {
-				if (mode === Mode.NORMAL) {
-					// logic
-				}
-			})
+			// gamepad.for(b).before(({mode}) => {
+			// 	if (mode === Mode.NORMAL) {
+			// 		// logic
+			// 	}
+			// })
+
+			gamepad
+				.for(dpaddown)
+				.before(({mode}) => {
+					switch (mode) {
+						case Mode.NORMAL:
+							downRepeater.start()
+							break
+					}
+				})
+				.after(() => {
+					downRepeater.stop()
+				})
+
+			gamepad
+				.for(dpadup)
+				.before(({mode}) => {
+					switch (mode) {
+						case Mode.NORMAL:
+							upRepeater.start()
+							break
+					}
+				})
+				.after(() => {
+					upRepeater.stop()
+				})
 		})
 	}
 }

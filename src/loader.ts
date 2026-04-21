@@ -15,13 +15,13 @@ document.querySelector('material-shell')?.appendChild(app)
 
 import './global-listeners.js'
 
-// import './gamepad.js';
+import './gamepad.js'
 
 // app.updateComplete.then(() => {});
 
 /**
  * Uncomment the follow for reactive object debugging
  */
-import {store} from './store.js'
-import {monitor} from './debug-element.js'
-monitor([store])
+// import {store} from './store.js'
+// import {monitor} from './debug-element.js'
+// monitor([store])
