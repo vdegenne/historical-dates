@@ -1,19 +1,23 @@
+import {googleImagesOpen} from '@vdegenne/links'
 import {ReactiveController} from '@snar/lit'
 import {MGamepad, MiniGamepad, Mode} from '@vdegenne/mini-gamepad'
 import {Repeater} from '@vdegenne/mini-gamepad/repeater.js'
 import {state} from 'lit/decorators.js'
 import toast from 'toastit'
 import {store} from './store.js'
+import {dates} from './dates.js'
 
 const downRepeater = new Repeater({
 	action() {
 		store.nextDateIndex()
 	},
+	speedMs: 30,
 })
 const upRepeater = new Repeater({
 	action() {
 		store.previousDateIndex()
 	},
+	speedMs: 30,
 })
 
 class GamepadController extends ReactiveController {
@@ -65,7 +69,7 @@ class GamepadController extends ReactiveController {
 			// })
 
 			gamepad
-				.for(dpaddown)
+				.for(ldown)
 				.before(({mode}) => {
 					switch (mode) {
 						case Mode.NORMAL:
@@ -78,7 +82,7 @@ class GamepadController extends ReactiveController {
 				})
 
 			gamepad
-				.for(dpadup)
+				.for(lup)
 				.before(({mode}) => {
 					switch (mode) {
 						case Mode.NORMAL:
@@ -89,6 +93,17 @@ class GamepadController extends ReactiveController {
 				.after(() => {
 					upRepeater.stop()
 				})
+
+			gamepad.for(dpaddown).before(({mode}) => {
+				switch (mode) {
+					case Mode.NORMAL:
+						const date = dates[store.dateIndex]
+						if (date) {
+							googleImagesOpen(date.title)
+						}
+						break
+				}
+			})
 		})
 	}
 }

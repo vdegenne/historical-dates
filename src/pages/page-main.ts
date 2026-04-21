@@ -22,6 +22,15 @@ declare global {
 	md-list-item[selected] {
 		background-color: var(--md-sys-color-surface-container-highest);
 	}
+
+	md-list-item[zero] {
+		background-color: var(--md-sys-color-primary-container);
+		--md-sys-color-primary: var(--md-sys-color-on-primary-container);
+		--md-sys-color-on-surface: var(--md-sys-color-on-primary-container);
+		--md-sys-color-on-surface-variant: var(
+			--md-sys-color-on-secondary-container
+		);
+	}
 `)
 export class PageMain extends PageElement {
 	@query('md-list-item[selected]') selectedListItem?: MdListItem
@@ -33,7 +42,10 @@ export class PageMain extends PageElement {
 				${dates.map((date, i) => {
 					const isMinus = date.date.replace(/^~/, '').startsWith('-')
 					return html`<!-- -->
-						<md-list-item ?selected=${i === store.dateIndex}>
+						<md-list-item
+							?selected=${i === store.dateIndex}
+							?zero=${date.date === '0'}
+						>
 							<div
 								slot="start"
 								class="${isMinus

@@ -2,8 +2,9 @@ import {PropertyValues, ReactiveController, state} from '@snar/lit'
 import {FormBuilder} from '@vdegenne/forms/FormBuilder.js'
 import {saveToLocalStorage} from 'snar-save-to-local-storage'
 import {availablePages} from './constants.js'
-import {getMainPage, Page} from './pages/index.js'
 import {dates} from './dates.js'
+import {getMainPage, Page} from './pages/index.js'
+import {sleep} from './utils.js'
 
 @saveToLocalStorage('historical-dates:store')
 export class AppStore extends ReactiveController {
@@ -11,7 +12,9 @@ export class AppStore extends ReactiveController {
 
 	F = new FormBuilder(this)
 
-	protected updated(changed: PropertyValues<this>) {
+	#firstUpdate = true
+
+	protected async updated(changed: PropertyValues<this>) {
 		// const {hash, router} = await import('./router.js')
 		if (changed.has('page')) {
 			// import('./router.js').then(({router}) => {
@@ -26,10 +29,14 @@ export class AppStore extends ReactiveController {
 		}
 
 		if (changed.has('dateIndex')) {
-			const mainPage = getMainPage()
-			mainPage.updateComplete.then(() => {
-				mainPage.focusSelectedItem()
-			})
+			if (this.#firstUpdate) {
+				await sleep(200)
+				const mainPage = getMainPage()
+				mainPage.updateComplete.then(() => {
+					mainPage.focusSelectedItem()
+				})
+				this.#firstUpdate = false
+			}
 		}
 	}
 
