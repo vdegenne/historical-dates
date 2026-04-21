@@ -3,9 +3,10 @@ import {withController} from '@snar/lit'
 import {css, html} from 'lit'
 import {withStyles} from 'lit-with-styles'
 import {customElement, query} from 'lit/decorators.js'
-import {dates} from '../dates.js'
+import {Date, dates} from '../dates.js'
 import {store} from '../store.js'
 import {PageElement} from './PageElement.js'
+import {createHighlightedHtml} from '../utils.js'
 
 declare global {
 	interface HTMLElementTagNameMap {
@@ -31,20 +32,44 @@ declare global {
 			--md-sys-color-on-secondary-container
 		);
 	}
+
+	.highlight {
+		background-color: var(--md-sys-color-primary-container);
+		color: var(--md-sys-color-on-primary-container);
+	}
 `)
 export class PageMain extends PageElement {
 	@query('md-list-item[selected]') selectedListItem?: MdListItem
 
 	render() {
-		console.log(dates)
+		const search = store.search.toLowerCase()
+		const filteredDates: Date[] = dates.filter((date) => {
+			if (store.quizDateIndex >= 0 || !search) return date
+			return (
+				date.title.toLowerCase().includes(search) ||
+				date.content.toLowerCase().includes(search)
+			)
+		})
+
+		// console.log(dates)
 		return html`<!---->
-			<md-list>
-				${dates.map((date, i) => {
+			<md-list class="mb-24">
+				${filteredDates.map((date, i) => {
 					const isMinus = date.date.replace(/^~/, '').startsWith('-')
 					return html`<!-- -->
 						<md-list-item
-							?selected=${i === store.dateIndex}
+							?selected=${store.quizDateIndex >= 0
+								? i === store.quizDateIndex
+								: i === store.dateIndex}
 							?zero=${date.date === '0'}
+							@click=${() => {
+								if (store.quizDateIndex !== -1) {
+									store.quizDateIndex = -1
+									return
+								} else {
+									store.dateIndex = i
+								}
+							}}
 						>
 							<div
 								slot="start"
@@ -54,11 +79,15 @@ export class PageMain extends PageElement {
 							>
 								${date.date}
 							</div>
-							<div slot="headline">${date.title}</div>
-							${date.content
+							<div slot="headline">
+								${store.quizDateIndex >= 0 && i === store.quizDateIndex
+									? '????????????'
+									: createHighlightedHtml(date.title, search)}
+							</div>
+							${date.content && store.quizDateIndex !== i
 								? html`<!-- -->
 										<span slot="supporting-text" class="whitespace-pre-line"
-											>${date.content}</span
+											>${createHighlightedHtml(date.content, search)}</span
 										>
 										<!-- -->`
 								: null}
@@ -74,11 +103,11 @@ export class PageMain extends PageElement {
 			<!----> `
 	}
 
-	focusSelectedItem() {
+	focusSelectedItem(behavior: ScrollBehavior = 'smooth') {
 		this.selectedListItem?.scrollIntoView({
 			block: 'center',
 			inline: 'center',
-			behavior: 'smooth',
+			behavior,
 		})
 	}
 }

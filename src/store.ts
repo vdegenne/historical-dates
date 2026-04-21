@@ -1,3 +1,4 @@
+import {speakEnglish, speakFrench} from '@vdegenne/speech'
 import {PropertyValues, ReactiveController, state} from '@snar/lit'
 import {FormBuilder} from '@vdegenne/forms/FormBuilder.js'
 import {saveToLocalStorage} from 'snar-save-to-local-storage'
@@ -10,9 +11,21 @@ import {sleep} from './utils.js'
 export class AppStore extends ReactiveController {
 	@state() page: Page = 'main'
 
+	@state() dateIndex = 0
+	@state() quizDateIndex = -1
+
+	@state() search = ''
+
 	F = new FormBuilder(this)
 
 	#firstUpdate = true
+
+	update(changed: PropertyValues<this>) {
+		if (this.#firstUpdate) {
+			this.quizDateIndex = -1
+		}
+		super.update(changed)
+	}
 
 	protected async updated(changed: PropertyValues<this>) {
 		// const {hash, router} = await import('./router.js')
@@ -28,19 +41,22 @@ export class AppStore extends ReactiveController {
 				.catch(() => {})
 		}
 
-		if (changed.has('dateIndex')) {
-			if (this.#firstUpdate) {
+		if (changed.has('dateIndex') || changed.has('quizDateIndex')) {
+			if (this.#firstUpdate || this.quizDateIndex !== -1) {
 				await sleep(200)
 				const mainPage = getMainPage()
 				mainPage.updateComplete.then(() => {
-					mainPage.focusSelectedItem()
+					mainPage.focusSelectedItem('instant')
 				})
 				this.#firstUpdate = false
+
+				if (this.quizDateIndex !== -1) {
+					const date = dates[this.quizDateIndex]!
+					speakFrench(date.date)
+				}
 			}
 		}
 	}
-
-	@state() dateIndex = 0
 
 	previousDateIndex() {
 		if (!dates.length) return
@@ -50,6 +66,11 @@ export class AppStore extends ReactiveController {
 	nextDateIndex() {
 		if (!dates.length) return
 		this.dateIndex = (this.dateIndex + 1) % dates.length
+	}
+
+	newQuizDateIndex() {
+		this.search = ''
+		this.quizDateIndex = Math.floor(Math.random() * dates.length)
 	}
 }
 

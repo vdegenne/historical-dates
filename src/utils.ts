@@ -1,3 +1,4 @@
+import {unsafeHTML} from 'lit/directives/unsafe-html.js'
 import {type PropertyValues} from 'snar'
 // import {toast} from 'toastit'
 
@@ -68,7 +69,7 @@ export function getElementsTree(node: Element): Promise<Element[]> {
 }
 export async function getElementInTree(
 	from: Element,
-	condition: (element: Element) => boolean
+	condition: (element: Element) => boolean,
 ): Promise<Element | undefined> {
 	for (const element of await getElementsTree(from)) {
 		if (condition(element)) {
@@ -143,10 +144,10 @@ export async function loadDataFromFile(): Promise<string> {
 
 export function propertyValuesToJson<T>(
 	changed: PropertyValues<T>,
-	object: T
+	object: T,
 ): Partial<T> {
 	return Object.fromEntries(
-		[...changed.keys()].map((key) => [key, object[key as keyof typeof object]])
+		[...changed.keys()].map((key) => [key, object[key as keyof typeof object]]),
 	) as Partial<T>
 }
 
@@ -187,8 +188,8 @@ export function waitForTransition(element: HTMLElement) {
 
 export function createHighlightedHtml(
 	input: string,
-	search: string | string[]
-): string {
+	search: string | string[],
+) {
 	if (!search || (Array.isArray(search) && search.length === 0)) return input
 
 	const esc = function (s: string): string {
@@ -211,13 +212,15 @@ export function createHighlightedHtml(
 
 	// Escape regex characters in each keyword
 	const escapedKeywords = keywords.map((k) =>
-		k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+		k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
 	)
 
 	// Create a regex matching any keyword
 	const regex = new RegExp(`(${escapedKeywords.join('|')})`, 'gi')
 
-	return escapedInput.replace(regex, '<span class="highlight">$1</span>')
+	return unsafeHTML(
+		escapedInput.replace(regex, '<span class="highlight">$1</span>'),
+	)
 }
 
 export function loremIpsum(paragraphs: number = 1): string {

@@ -81,6 +81,7 @@
     "@vdegenne/mini-rest": "^0.3.2",
     "@vdegenne/rollup-plugin-minify-html": "^1.0.6",
     "@vdegenne/router": "^0.1.8",
+    "@vdegenne/speech": "^0.5.1",
     "custom-element-decorator": "^0.6.0",
     "html-vision": "^0.3.10",
     "lit": "^3.3.2",

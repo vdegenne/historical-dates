@@ -1,4 +1,7 @@
 import '@material/mwc-top-app-bar'
+import '@material/web/iconbutton/icon-button.js'
+import '@material/web/textfield/filled-text-field.js'
+// import '@material/web/textfield/outlined-text-field.js'
 import {withController} from '@snar/lit'
 import {html, type PropertyValues} from 'lit'
 import {withStyles} from 'lit-with-styles'
@@ -42,10 +45,14 @@ export class AppShell extends MaterialShellChild {
 					>
 						<md-icon>${unsafeSVG(SVG_LOGO)}</md-icon>
 					</md-icon-button>
-					<span>historical-dates</span>
+					<div>${store.F.TEXTFIELD('Search', 'search', {type: 'text'})}</div>
+					<!-- <span>historical-dates</span> -->
 				</md-list-item>
 
 				<div slot="actionItems" class="flex gap-3">
+					<md-icon-button @click=${() => store.newQuizDateIndex()}>
+						<md-icon>casino</md-icon>
+					</md-icon-button>
 					<!-- <md-icon-button -->
 					<!-- 	toggle -->
 					<!-- 	@click=${store.toggleAudio} -->
@@ -102,7 +109,7 @@ export class AppShell extends MaterialShellChild {
 				'geometrychange',
 				(event: any) => {
 					const buttons = this.renderRoot.querySelector<HTMLElement>(
-						'[slot="actionItems"]'
+						'[slot="actionItems"]',
 					)
 					if (!buttons) return
 					if (event.visible) {
@@ -112,7 +119,7 @@ export class AppShell extends MaterialShellChild {
 						buttons.style.paddingTop = '0'
 						buttons.style.transform = 'initial'
 					}
-				}
+				},
 			)
 		}
 	}
