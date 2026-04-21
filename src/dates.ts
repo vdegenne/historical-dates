@@ -2,6 +2,8 @@ import _dates from '/dates.txt?raw'
 
 export interface Date {
 	date: string
+	start?: boolean
+	end?: boolean
 	title: string
 	content: string
 }
@@ -17,13 +19,25 @@ function treatRaw(raw: string): Date[] {
 
 	const dates = blocks.map((block) => {
 		const lines = block.split('\n')
-		const [date, ...title] = lines[0]!.split(' ')
+		const firstLine = lines[0]!.split(' ')
 
-		return {
+		const date = firstLine[0]!
+		let end = false
+		let title = firstLine.slice(1).join(' ')
+
+		if (title.startsWith('fin ')) {
+			title = title.replace(/^fin /, '')
+			end = true
+		}
+
+		const dateObj: Date = {
 			date,
-			title: title.join(' '),
+			title,
+			end,
 			content: lines.slice(1).join('\n'),
-		} as Date
+		}
+
+		return dateObj
 	})
 
 	return dates.sort((a, b) => parseDate(a.date!) - parseDate(b.date!))

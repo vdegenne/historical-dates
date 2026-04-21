@@ -51,6 +51,8 @@ export class PageMain extends PageElement {
 			)
 		})
 
+		// console.log(filteredDates)
+
 		// console.log(dates)
 		return html`<!---->
 			<md-list class="mb-24">
@@ -80,6 +82,7 @@ export class PageMain extends PageElement {
 								${date.date}
 							</div>
 							<div slot="headline">
+								${date.end ? '✝' : ''}
 								${store.quizDateIndex >= 0 && i === store.quizDateIndex
 									? '????????????'
 									: createHighlightedHtml(date.title, search)}
