@@ -25,13 +25,19 @@ Sud Juda, capitale: jerusalem (le mot "juif" vient de ce royaume), mais le terme
 Jerusalem fait partie du royaume de Juda
 "Israelite" devient flou, fait reference plutot au nord mais peut faire reference aux deux royaumes (proche culturellement)
 
--722 Les assyriens detruit le royaume d'Israel
+-722 Les assyriens detruisent le royaume d'Israel
 
-~-700 Cyrene
+~-631 Cyrene
+Fondee en Cyrénaïque (Libye Est)
+Par des grecs venus de Santorin
 
 -600 (?) les philistins n'existent plus.
 
--558 Les babyloniens detruit le royaume de Juda
+-600 Fondation de marseille par les Phocéens
+Peuple de Ionie
+,grèce
+
+-558 Les babyloniens detruisent le royaume de Juda
 mais l'identite de juda persiste, on utilisera plus "juif" qu'"israelite" a partir de ce moment.
 
 -550 fin age du fer
@@ -54,6 +60,9 @@ region autours de jerusalem = judea (sous controle de l'empire perse (achemenide
 Sous domination grecque apres sa victoire
 puis influence grecque mais jerusalem reste une population juive.
 isr
+
+-315 Thessalonique
+Royaume de Macedoine fondee par les grecs
 
 -68 Strabon
 Grec
@@ -173,10 +182,19 @@ moyen-age tardif
 Osman 1er
 Etat multi-ethnique musulman
 
+1302 Etats generaux (Philippe le Bel)
+Considere comme la premiere convocation des Etats generaux / premiere forme d'assemblee representative
+3 ordres: Clerge, noblesse, tiers etat (le plus de deputes)
+,france,gouvernement
+
 ~1400 Debut Renaissance
 L'Humanisme en decoule (proche du peripateticien)
 
-1492 Juifs expulses d'Espagne
+1430 Thessalonique prise par l'Empire ottoman 
+
+1492 Expulsion des Juifs d'Espagne
+sous Isabelle I de Castille et Ferdinand II d'Aragon
+Pendant la periode Colomb
 
 1453 Chute de Constantinople fin reelle empire byzantin
 Prise de Constantinople par les Ottomans
@@ -211,6 +229,8 @@ Certaines eglises post-baroque peuvent s'inspirer de l'Art Jesuite sans en etre.
 ~1600 Fin Renaissance
 
 1789 Revolution francaise
+Les Etats generaux deviennent l'Assemblee nationale
+,france,gouvernement
 
 1790 Alphonse de Lamartine naissance
 
@@ -257,6 +277,13 @@ L'Autriche est exclue
 
 1907 2nd convention de La Haye
 
+1911-1912 Guerre italo-turque
+Guerre de Libye
+Empire Ottoman vs royaume Italie
+Atatürk est officier de l’armée ottomane a ce moment (commandant militaire)
+Italie s'empare de Tripolitaine et Cyrénaïque (sous controle Ottoman)
+,italie
+
 1914 1ere guerre mondiale
 Allemagne dirigee par les elites prussiennes
 Prusse = surtout heritage militaire.
@@ -286,6 +313,10 @@ aucune division, etat administratif plein
 Les populations restent arabo-musulmans, avec minorite juive.
 Mais beaucoup de juifs immigrent aussi (aliyot)
 
+1923 Republique de Turquie
+Premier président: Mustafa Kemal Pacha (Atatürk)
+Il est appele Atatürk a partir de 1934 (ata = pere, turk = turc)
+
 1923 accords franco-britannique
 
 1938 Annexion de l'Autriche par l'Allemagne
@@ -293,6 +324,18 @@ Anschluss
 
 1939 2eme guerre mondiale
 La Prusse existe encore administrativement au debut (comme region/Etat allemand) puis Hitler reprend la symbolique/culture, elle est progressivement videe de son autonomie et integree au systeme central du regime nazi.
+
+1940-1941 Guerre italo-grecque
+L'Italie fasciste attaque la grece
+
+1941 Invasion allemande de la Grece
+pour aider l'Italie
+
+1945 Hiroshima
+6 aout
+
+1945 Nagasaki
+9 aout
 
 1945 fin 2eme guerre mondiale
 
