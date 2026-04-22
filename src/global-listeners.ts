@@ -1,7 +1,4 @@
 import {cquerySelector} from 'html-vision'
-import {DEV} from './constants.js'
-import {getThemeStore, openSettingsDialog} from './imports.js'
-import toast from 'toastit'
 import {app} from './app-shell/app-shell.js'
 
 const inputNames = ['INPUT', 'TEXTAREA', 'MD-FILLED-TEXT-FIELD']
